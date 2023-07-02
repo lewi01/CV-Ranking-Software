@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+        <title>Job Results</title>
+    </head> 
+
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbar"> 
+        <div class="navbar-nav content">
+
+            <a class="nav-item nav-link" id="home" href="/company">Home</a>
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <!-- <a class="nav-item nav-link" id="login" href="/login">Login</a> -->
+            <!-- <a class="nav-item nav-link" id="sign-up" href="/sign-up">Sign Up</a> -->
+            <!-- <a class="nav-item nav-link" id="sign-up" href="/company-login">Company Login</a> -->
+            <!-- <a class="nav-item nav-link" id="sign-up" href="/register-company">Company Registration</a> -->
+             
+        </div>
+    </div>
+
+    </button>
+  </nav>
+
+  <div>
+    <br>
+    <h4> Job results for: <strong>{{applicants[0].job_name}}</strong> </h4>
+    <br>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Candidate Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Skills Match</th>
+            <th scope="col">Experience Match</th>
+            <th scope="col">Education Match</th>
+            <th scope="col"> Personality Match</th>
+            <th scope="col"> Overall %</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in  applicants%}
+          <tr>
+            <th scope="row">{{job.position}}</th>
+            <td>{{job.applicant_name}}</td>
+            <td>{{job.email}}</td>
+            <td>{{job.skills_percentage}} %</td>
+            <td>{{job.experience_percentage}} %</td>
+            <td>{{job.education_percentage}} %</td>
+            <td>{{job.personality_percentage}}%</td>
+            <td>{{job.total_score}}%</td>
+            <td>
+              <!-- <button type="button" class="btn btn-primary"  onclick="viewApplicants({{job.id}})"> View Applicants</button> -->
+              <!-- <button type="button" class="btn btn-danger" onclick="deleteNote({{job.id}})"> Delete</button> -->
+            </td>
+          </tr>
+          <tr>
+   
+          {%endfor%}
+        </tbody>
+      </table>
+
+
+
+
+{%for applicant in applicants%}
+
+
+<!-- 
+<h2> Applicants User_id:{{applicant.applicant_name}}</h1>
+<h1>Applicants_job_id:{{applicant.email}}</h1>
+<h1>Applicants_percentage_skills{{applicant.skills_percentage}}</h1>
+<h1>Applicants_percentage_personality:{{applicant.personality_percentage}}</h1> -->
+
+
+{%endfor%}

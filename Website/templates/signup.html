@@ -1,0 +1,59 @@
+{% extends  "base.html" %}
+{%block title %}Sign up{%endblock%}
+
+{%block content%}
+
+<form action="" method="POST" enctype="multipart/form-data">
+
+
+    <h3 align="center">Applicant Registration</h3>
+    
+    <div class="form-group">
+        <label for="firstName">Full Name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter full name">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+    </div>
+
+    
+<!--     
+    <div class="form-group">
+       
+        <input type="text" name="twitterUsername" id="twitterUsername">
+    </div> -->
+
+    <br>
+    <div class="input-group">
+        <!-- <label for="twitterUsername">Twitter Username</label> -->
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Twitter Username" aria-label="Username" aria-describedby="basic-addon1" name="twitterUsername">
+      </div>
+    
+    <div class="form-group">
+        <label for="password1">Password </label>
+        <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label for="password2">Password </label>
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
+    </div>
+    <br>
+
+    <div class="form-group ">
+        <label for="resume">Resume</label>
+        <!-- <input type="file" class="filestyle" name="image_src" id="image_src" data-input="false" data-iconName="fa fa-upload" data-buttonText="Upload File" /> -->
+        <input type="file" name="resume" id="resume">
+    </div>
+    
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{%endblock%}
+

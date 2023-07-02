@@ -1,0 +1,162 @@
+{%extends "base.html" %}
+
+{%block title%}Company{%endblock%}
+
+{%block content%}
+
+<h3>Welcome, {{company_name}}</h3>
+
+
+<div>
+    <h4>Active Jobs</h4>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID.</th>
+            <th scope="col">Job Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Experience Required</th>
+            <th scope="col">Personality Required</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in  jobs%}
+          <tr>
+            <th scope="row">{{job.id }}</th>
+            <td>{{job.name}}</td>
+            <td>{{job.description}}</td>
+            <td>{{job.experience_required}} Years</td>
+            <td>{{job.personality_required}}</td>
+            <td>
+              <button type="button" class="btn btn-primary"  onclick="viewApplicants({{job.id}})"> View Applicants</button>
+              <button type="button" class="btn btn-danger" onclick="deleteNote({{job.id}})"> Delete</button>
+            </td>
+          </tr>
+          <tr>
+   
+          {%endfor%}
+        </tbody>
+      </table>
+
+      {%block modal%} {%endblock%}
+     
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
+</div>
+<br>
+<br>
+<div class="card">
+
+    <div class="card-body">
+        <div class="card-title">
+            <h2>Add Job</h2>
+        </div>
+        <form action="" method="POST">
+            
+            <div class="form-group">
+                <label for="jobName">Job Name</label>
+                <input type="text" class="form-control" id="jobName" name="jobName" placeholder="">
+            </div>
+            
+            <div class="form-group">
+                <label for="jobDescription">Job Description</label>
+                <input type="text" class="form-control" id="jobDescription" name="jobDescription" placeholder="">
+            </div>
+            
+            <div class="form-group">
+                <label for="skills">Skills Required</label>
+                <input type="text" class="form-control" id="skills" name="skills" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="skills">Educational Requirements</label>
+                <input type="text" class="form-control" id="education" name="education" placeholder="Bsc. Electrical Engineering">
+            </div>
+
+            <div class="form-group">
+              <select class="form-select" name="experience" aria-label="Default select example">
+                <option selected>Experience</option>
+                <option value="1">< 1 year</option>
+                <option value="2">2 years</option>
+                <option value="3">3 years</option>
+                <option value="4">4 years</option>
+                <option value="5">5 years</option>
+                <option value="6">6 years</option>
+                <option value="7">7 years</option>
+                <option value="8">8 years</option>
+                <option value="9">9 years</option>
+                <option value="10">>10 years</option>
+              </select>
+            </div>
+            
+            
+            <div class="form-group">
+                <label for="personalityType">Personality Type</label>
+                <select class="form-select" name="personalityType" aria-label="Default select example">
+                    <option selected>Personality Type</option>
+                    <option value="ISTJ">ISTJ : Reserved and practical, they tend to be loyal, orderly, and traditional</option>
+                    <option value="ISTP">ISTP : Highly independent, they enjoy new experiences that provide first-hand learning.</option>
+                    <option value="ISFJ">ISFJ : Warm-hearted and dedicated, they are always ready to protect the people they care about.</option>
+                    <option value="ISFP">ISFP : The Artist: Easy-going and flexible, they tend to be reserved and artistic.</option>
+                    <option value="ISTP">ISTP : The Crafter: Strong appreciation for art</option>
+                    <option value="ISTJ">ISTJ : The Inspector: Dependable and perseverant</option>
+                    <option value="INFJ">INFJ : The Advocate: Creative and analytical, they are considered one of the rarest Myers-Briggs types</option>
+                    <option value="INFP">INFP : The Mediator: Idealistic with high values, they strive to make the world a better place.</option>
+                    <option value="INTJ">INTJ : The Architect: High logical, they are both very creative and analytical.</option>
+                    <option value="ENTP">ENTP : The Visionary: ENTPs are inspired innovators, motivated to find new solutions to intellectually challenging problems. </option>
+                    <option value="ENFP">ENFP : The champion: Creative energetic the champions</option>
+                    <option value="ENFJ">ENFJ : The Teacher: Focused who enjoy creating possibilities</option>
+                    <option value="ESFJ">ESFJ : The Provider: Warm energetic, peoples person</option>
+                    <option value="ESTJ">ESTJ : The Supervisor: Analytical, decisive, direct and efficient</option>
+                    <option value="ESFP">ESFP : The Performer: Analytical, decisive, direct and efficient</option>
+                    <option value="ENTJ">ENTJ : The Commander: Natural born leaders with strong desires to create</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+
+              <label for=""><strong>Percentage contribution to final Score</strong></label>
+              <br>
+              <label for="skillsPercentage">Skills(%)</label>
+              <input type="text" class="form-control" id="skillsPercentage" name="skillsPercentage" placeholder="">
+
+              <label for="experiencePercentage">Experience(%)</label>
+              <input type="text" class="form-control" id="experiencePercentage" name="experiencePercentage" placeholder="">
+
+              <label for="skills">Education(%)</label>
+              <input type="text" class="form-control" id="educationPercentage" name="educationPercentage" placeholder="">
+
+              <label for="skills">Personality Type(%)</label>
+              <input type="text" class="form-control" id="personalityPercentage" name="personalityPercentage" placeholder="">
+            
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary">Add job</button>
+        </form>
+    </div>
+    </div>
+{%endblock content%}
+
+{%block script%} {%endblock%}
+

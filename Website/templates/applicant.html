@@ -1,0 +1,41 @@
+{%extends "base.html" %}
+{%block title%}Applicant{%endblock%}
+
+{%block content%}
+
+<h4 class="display-7">Welcome, <strong>{{user.firstName}}</strong></h4>
+<p><strong class="display-7">Predicted Personality:</strong> <br>{{user.personality_type}}<p>
+
+<p class="display-7"><strong>Skills Collected:</strong> <br> {{user.skills}}</p>
+<p class="display-7"><strong>Experience :</strong> <br> {{user.experience_rating}} Years</p>
+<p class="display-7"><strong>Degree :</strong>  {{user.degree}} </p>
+<h3>Active Jobs</h3>
+
+<div class="container-fluid">
+    <div class="row">
+        {% for job in jobs %}
+        <div class="col-md-3 card border-dark" style=" margin-right:10px; margin-bottom:10px; box-shadow: 0px 10px 20px rgba(6, 6, 6, 0.2);">
+            <div class="card-header"><H4>{{job.company}}</H4></div>
+            <div class="card-body text-dark">
+                <div class="card-body">
+                    <h5 class="card-title">{{ job.name }}</h5>
+                    <!-- <p class="card-text">Age: {{ job.name }}</p> -->
+                    <p class="card-text"><strong>Description:</strong> {{job.description}}</p>
+                    <p class="card-text"><strong>Skills Required:</strong>{{job.skills_required}}</p>
+
+                    {%if job.user_has_applied%} 
+                    <!-- <button class="btn btn-danger">Applied</button> -->
+                    <!-- <span class="label label-success">Applied</span> -->
+                    <a href="#" style="height: 50px; width: 90px;" class=" badge badge-success "><h4>Applied</h4></a>
+                    <h4>Match: {{job.matchPercentage}} %</h4>
+                    {%else%}
+                    <button class="btn btn-primary" onclick="applyJob({{job.id}})">Apply</button>
+                    {%endif%}
+                    <!-- <button class="btn btn-primary" onclick="applyJob({{job.id}})">Apply</button> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
